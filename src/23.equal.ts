@@ -1,5 +1,8 @@
 export default {}
 
+// 简单版本，不考虑 any的情况下，下面这个方法，很容易理解
+type IsEqual<A, B> = [A] extends [B] ? [B] extends [A] ? true : false : false
+
 type Equal<T, K> = [T] extends [K] ? [K] extends [T] ? (keyof T extends keyof K ? keyof K extends keyof T ? true : false : false) : false : false
 // type Equal<T, K> = T extends K ? K extends T ? (keyof T extends keyof K ? keyof K extends keyof T ? true : false : false) : false : false;
 
