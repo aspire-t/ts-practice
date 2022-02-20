@@ -15,5 +15,5 @@ type Foo = {
 type Bar = {
 	b: number
 }
-
+//注意的是：合并属性，后一个类型会覆盖前一个类型。 
 const ab: Merge<Foo, Bar> = { a: 1, b: 2 }
