@@ -1,0 +1,16 @@
+export default {}
+
+type Merge<FirstType, SecondType> = {
+	[T in keyof FirstType & SecondType]: T extends keyof FirstType ? FirstType[T] : T extends keyof SecondType ? SecondType[T] : never
+}
+
+type Foo = {
+	a: number
+	b: string
+}
+
+type Bar = {
+	b: number
+}
+
+const ab: Merge<Foo, Bar> = { a: 1, b: 2 }
