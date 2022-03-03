@@ -4,20 +4,21 @@ export default {}
 
 // 比如：Promise <ExampleType>，请你返回 ExampleType 类型。
 
-type MyAwaited<T> = T extends Promise<infer R> ? R : never
+// 如果不考虑Promise嵌套的情况，直接使用下面这种方法
+// type MyAwaited<T> = T extends Promise<infer R> ? R : never
 
-// type MyAwaited<T extends Promise<unknown>> = T extends Promise<infer U>
-// 	? U extends Promise<unknown>
-// 	? MyAwaited<U>
-// 	: U
-// 	: never
+// 考虑Promise嵌套问题，就需要递归的去取值 
+type MyAwaited<T extends Promise<unknown>> = T extends Promise<infer U>
+	? U extends Promise<unknown>
+	? MyAwaited<U>
+	: U
+	: never
 
 type ExampleType = {
-	a: '1'
+	a: '1',
+	b: '2'
 }
 
-type exam = MyAwaited<Promise<ExampleType>>
+type PromiseT = Promise<ExampleType>
 
-
-
-
+type A = MyAwaited<Promise<PromiseT>>
