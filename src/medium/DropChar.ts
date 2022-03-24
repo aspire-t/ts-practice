@@ -1,5 +1,6 @@
 export default {}
 
+// case one
 type DropChar<S, C, T extends string = ''> =
 	S extends `${infer H}${infer R}`
 	? (H extends C
@@ -7,5 +8,11 @@ type DropChar<S, C, T extends string = ''> =
 		: DropChar<R, C, `${T}${H}`>)
 	: T
 
+// case two
+// 这个应该更好理解
+type DropChar<String extends string, Char extends string> =
+	String extends `${infer Pre}${Char}${infer Post}`
+	? DropChar<`${Pre}${Post}`, Char>
+	: String
 
 type Butterfly = DropChar<' b u t t e r f l y ! ', ' '> // 'butterfly!'
