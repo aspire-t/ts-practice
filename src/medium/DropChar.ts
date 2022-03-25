@@ -16,3 +16,6 @@ type DropChar<String extends string, Char extends string> =
 	: String
 
 type Butterfly = DropChar<' b u t t e r f l y ! ', ' '> // 'butterfly!'
+
+// https://juejin.cn/post/6994102811218673700?utm_source=gold_browser_extension#heading-8
+// https://juejin.cn/post/6999280101556748295#heading-46
